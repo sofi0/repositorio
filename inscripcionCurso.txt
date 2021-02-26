@@ -1,0 +1,1 @@
+el estudiante sofia con cedula 123 esta matriculado en el curso Node.JS con un precio de 0

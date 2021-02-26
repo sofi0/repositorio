@@ -1,5 +1,7 @@
 const fs = require ("fs");
-
+const express = require('express')
+const app = express()
+ 
 let cursosOf =[
 	{
 		nombre: 'Node.JS',
@@ -55,19 +57,23 @@ const argv = require('yargs')
 
 function inscribirCurso(){
 	if (argv.id == 1 || argv.id == 2 || argv.id == 3 ){
-		let texto = `el estudiante ${argv.nombre} con cedula ${argv.cedula} esta matriculado en el curso ${cursosOf[argv.id-1].nombre} con un precio de ${cursosOf[argv.id-1].precio}`;
-		fs.writeFile('inscripcionCurso.txt' , texto, (err) => {
-		if(err) throw (err);
-		console.log('Usted quedo inscrito en el curso');
-	});
+		texto = `el estudiante ${argv.nombre} con cedula ${argv.cedula} esta matriculado en el curso ${cursosOf[argv.id-1].nombre} con un precio de ${cursosOf[argv.id-1].precio}`;
+		//fs.writeFile('inscripcionCurso.txt' , texto, (err) => {
+		//if(err) throw (err);
+		console.log("Usted quedo inscrito en el curso");
+	//});
 	}else {
-		console.log('El id que ha seleccionado no corresponde a ningun curso');
+		console.log("El id que ha seleccionado no corresponde a ningun curso");
 		mostrarCursos();
 	}
 }
 
 inscribirCurso();
 
-
+app.get('/', function (req, res) {
+  res.send(texto)
+})
+ 
+app.listen(3000)
 //let estudiante = cursosOf.find(info => info.id == id)
 
